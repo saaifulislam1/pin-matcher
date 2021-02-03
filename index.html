@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input id="pininput" class="form-control" type="text">
+                    <button id="Pinbtn" class="generate-btn">Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-section half-width">
+                    <input id="calcinput" class="form-control" type="text">
+                    <div class="numbers">
+                        <div class="calc-body">
+                            <div class="calc-button-row">
+                              <div id="seven" class="button">7</div>
+                              <div id="eight" class="button">8</div>
+                              <div id="nine" class="button">9</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div id="four" class="button">4</div>
+                              <div id="five" class="button">5</div>
+                              <div id="six" class="button">6</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div id="one" class="button">1</div>
+                              <div id="two" class="button">2</div>
+                              <div id="three" class="button">3</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button"><</div>
+                                <div id="zero" class="button">0</div>
+                                <div id="backspace" class="button">del</div>
+                            </div>
+                            <div>
+                                <button id="submitbtn" type="submit" class="submit-btn">Submit</button>
+                                <p class="action-left">3 try left</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="notify-section">
+            <p id="not" class="notify">❌ Pin Didn't Match, Please try again</p>
+            <p id="yes" class="notify">✅ Pin Matched... Secret door is opening for you</p>
+        </div>
+    </div>
+    <script>
+           //generating random values
+                document.getElementById("Pinbtn").addEventListener('click',function(){
+                    var pinNumber= Math.random()*10000;
+                    var pinfloor=Math.floor(pinNumber);
+                    
+                    document.getElementById("pininput").value=pinfloor;
+                    var matched=document.getElementById('yes');
+                    var notmatched=document.getElementById('not');
+                    matched.style.display="none"
+                    notmatched.style.display="none"
+
+                   
+                })
+                
+                //checking values on clicking submit buttton
+                document.getElementById("submitbtn").addEventListener('click',function(){
+
+
+                     var inputfield= document.getElementById('calcinput');
+               var inputstore=inputfield.value;
+               var inputNumber=parseInt(inputstore);
+               console.log(inputNumber);
+               var gen= document.getElementById("pininput").value;
+               var geninputnumber=parseInt(gen);
+               console.log(geninputnumber);
+               var matched=document.getElementById('yes');
+               var notmatched=document.getElementById('not');
+
+               if(geninputnumber==inputNumber){
+                   matched.style.display="block"
+
+               }
+               else
+              notmatched.style.display="block"
+
+
+
+
+                })
+            //calculator numbers input function
+                function numberbuttons(id){
+                    document.getElementById(id).addEventListener('click',function(){
+                    var existing= document.getElementById('calcinput').value;
+                    console.log(existing);
+                    var eight=document.getElementById(id).innerText;
+                    document.getElementById('calcinput').value=existing+eight;
+                })
+
+                }
+
+                numberbuttons('one');
+                numberbuttons('two');
+                numberbuttons('three');
+                numberbuttons('four');
+                numberbuttons('five');
+                numberbuttons('six');
+                numberbuttons('eight');
+                numberbuttons('seven');
+                numberbuttons('nine');
+                numberbuttons('zero');
+
+                //backspace button 
+                document.getElementById('backspace').addEventListener('click',function(){
+                    document.getElementById('calcinput').value="";
+                })
+
+                
+              
+
+            
+    </script>
+</body>
+</html>
