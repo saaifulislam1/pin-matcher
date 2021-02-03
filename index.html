@@ -85,11 +85,16 @@
                var notmatched=document.getElementById('not');
 
                if(geninputnumber==inputNumber){
-                   matched.style.display="block"
+                   matched.style.display="block";
+                   notmatched.style.display="none";
 
                }
-               else
-              notmatched.style.display="block"
+               else{
+                    notmatched.style.display="block";
+              matched.style.display="none";
+               }
+              
+             
 
 
 
